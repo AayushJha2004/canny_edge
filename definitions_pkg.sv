@@ -14,6 +14,6 @@ package definitions_pkg;
     8'h7, 8'h26, 8'h41, 8'h26, 8'h7,
     8'h4, 8'h16, 8'h26, 8'h16, 8'h4, 
     8'h1, 8'h4, 8'h7, 8'h4, 8'h1 
-  }
+  };
 
 endpackage: definitions_pkg

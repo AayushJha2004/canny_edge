@@ -6,7 +6,7 @@ module line_buffer
   input   logic [7:0] i_data, 
   input   logic i_data_valid,
   input   logic rd_data, 
-  output  logic [24:0] o_data
+  output  logic [23:0] o_data
 );
 
   logic [7:0] line [0:IMAGE_WIDTH-1];

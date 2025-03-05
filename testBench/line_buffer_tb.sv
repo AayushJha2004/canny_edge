@@ -1,3 +1,5 @@
+`timescale 1ps/1ps
+
 module line_buffer_tb;
   import definitions_pkg::*;
 
@@ -6,7 +8,7 @@ module line_buffer_tb;
   logic [7:0] i_data; 
   logic i_data_valid;
   logic rd_data; 
-  logic [24:0] o_data;
+  logic [23:0] o_data;
 
   line_buffer lb1 (.clk(clk), .rstN(rstN), .i_data(i_data), .i_data_valid(i_data_valid), .rd_data(rd_data), .o_data(o_data));
 
@@ -17,18 +19,18 @@ module line_buffer_tb;
   end
 
   initial begin
-    clk = 0;
+    clk = 1;
     rstN = 0;
     i_data = 0;
     i_data_valid = 0;
     rd_data = 0;
     
     #10;
-    rst = 1;
+    rstN = 1;
 
     //test for writing data into buffer
     i_data_valid = 1;
-    for (int i = 0; i < IMAGE_WIDTH-1; i++) begin
+    for (int i = 0; i < IMAGE_WIDTH; i++) begin
       i_data = i;
       #10;
     end
@@ -38,7 +40,7 @@ module line_buffer_tb;
     
     // test for reading data from the buffer
     rd_data = 1;
-    for (int i = 0; i < IMAGE_WIDTH-1; i++) begin
+    for (int i = 0; i < IMAGE_WIDTH; i++) begin
       if (o_data != i) $error("Mismatch at index %0d: Expected = %0d Output = %0d", i, i, o_data); 
       #10;
     end
