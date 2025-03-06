@@ -77,6 +77,8 @@ module pixel_loader
 
   always_comb begin
     case (curr_state) 
+      next_state = curr_state;
+      rd_buffer_enable_next = rd_buffer_enable;
       IDLE: begin
         if (buffer_pixel_count >= 1536) begin
           next_state = READ;
