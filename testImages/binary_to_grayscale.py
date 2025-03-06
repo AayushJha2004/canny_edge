@@ -1,6 +1,7 @@
 import os
 import numpy as np
 from PIL import Image
+import argparse
 
 def load_binary_image(binary_image_path, image_shape):
     """Loads a binary file and reshapes it into a grayscale image array."""
@@ -36,9 +37,17 @@ def process_binary_images(input_folder, output_folder, image_shape):
             save_image_from_binary(img_array, output_path)
             print(f"Converted {filename} back to PNG and saved to {output_filename}")
 
-# Example usage:
-input_folder = '/Users/aayush/Desktop/canny_edge/testImages/images_binary'  # Replace with your input folder path
-output_folder = '/Users/aayush/Desktop/canny_edge/testImages/images_grayscale'  # Replace with your output folder path
-image_shape = (512, 512)  # Assuming the image is 512x512, change if needed
+parser = argparse.ArgumentParser(description="Process input and output file paths.")
+parser.add_argument("-i", "--input", required=True, help="Path to the input file")
+parser.add_argument("-o", "--output", required=True, help="Path to the output file")
+    
+args = parser.parse_args()
+    
+print(f"Input file: {args.input}")
+print(f"Output file: {args.output}")
+
+input_folder = args.input
+output_folder = args.output
+image_shape = (512, 512)  
 
 process_binary_images(input_folder, output_folder, image_shape)

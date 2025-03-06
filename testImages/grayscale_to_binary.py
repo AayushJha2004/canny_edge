@@ -1,6 +1,7 @@
 import os
 import numpy as np
 from PIL import Image
+import argparse
 
 def convert_image_to_8bit(image_path):
     """Converts a grayscale image to an 8-bit image."""
@@ -32,8 +33,16 @@ def process_images(input_folder, output_folder):
             save_binary_image(binary_img, output_path)
             print(f"Converted {filename} to 8-bit grayscale binary and saved to {output_filename}")
 
-# Example usage:
-input_folder = '/Users/aayush/Desktop/canny_edge/testImages/images_grayscale'  # Replace with your input folder path
-output_folder = '/Users/aayush/Desktop/canny_edge/testImages/images_binary'  # Replace with your output folder path
+parser = argparse.ArgumentParser(description="Process input and output file paths.")
+parser.add_argument("-i", "--input", required=True, help="Path to the input file")
+parser.add_argument("-o", "--output", required=True, help="Path to the output file")
+    
+args = parser.parse_args()
+    
+print(f"Input file: {args.input}")
+print(f"Output file: {args.output}")
+
+input_folder = args.input
+output_folder = args.output
 
 process_images(input_folder, output_folder)
