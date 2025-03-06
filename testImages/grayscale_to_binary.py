@@ -25,7 +25,7 @@ def process_images(input_folder, output_folder):
             binary_img = convert_image_to_8bit(image_path)
             
             # Prepare the output file path
-            output_filename = os.path.splitext(filename)[0] + '.bin'
+            output_filename = os.path.splitext(filename)[0] + '.txt'
             output_path = os.path.join(output_folder, output_filename)
             
             # Save the 8-bit grayscale image
