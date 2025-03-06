@@ -6,7 +6,7 @@ module gaussian_filter
   input   logic [71:0]  gaussian_data_in,
   input   logic         gaussian_data_in_valid,
   output  logic [7:0]   gaussian_pixel_out,
-  output  logic [7:0]   gaussian_pixel_out_valid
+  output  logic         gaussian_pixel_out_valid
 );
 
   reg [15:0] mult_data [8:0];

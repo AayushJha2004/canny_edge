@@ -9,7 +9,9 @@ module pixel_loader_tb;
   logic         pixel_in_valid;
   logic [71:0]  pixel_data_out;
   logic         pixel_data_out_valid;
-
+  logic [7:0]   gaussian_pixel_out;
+  logic         gaussian_pixel_out_valid;
+  
   // Instantiate the pixel_loader module
   pixel_loader pl1(
     .clk(clk),
@@ -18,6 +20,15 @@ module pixel_loader_tb;
     .pixel_in_valid(pixel_in_valid),
     .pixel_data_out(pixel_data_out),
     .pixel_data_out_valid(pixel_data_out_valid)
+  );
+
+  gaussian_filter g1(
+    .clk(clk),
+    .rstN(rstN),
+    .gaussian_data_in(pixel_data_out),
+    .gaussian_data_in_valid(pixel_data_out_valid),
+    .gaussian_pixel_out(gaussian_pixel_out),
+    .gaussian_pixel_out_valid(gaussian_pixel_out_valid)
   );
 
   byte image_mem[512*512]; // Array to store image data (adjust as needed)
@@ -73,9 +84,29 @@ module pixel_loader_tb;
       pixel_in_valid = 1;  // Set the input valid
       #10;  // Wait for one clock cycle
     end
+  end
+    
+  int file2;
+  // Task to write pixel value to the .txt file
+  task write_pixel_to_file;
+    input logic [7:0] pixel_value;  // Pixel value to write
+    begin
+      // Open the file in append mode
+      file2 = $fopen("C:\\Users\\ROG\\Desktop\\canny_edge\\testImages\\output_image\\gaussian_output.txt", "a");
+      if (file2) begin
+        // Write the pixel value to the file (in binary format, followed by newline)
+        $fwrite(file2, "%b\n", pixel_value);  // Write binary representation of the pixel
+        $fclose(file2);  // Close the file after writing
+      end else begin
+        $display("Error: Unable to open file for writing.");
+      end
+    end
+  endtask
 
-    // End simulation after driving pixel values
-    $finish;
+  always @ (posedge clk) begin
+    if (gaussian_pixel_out_valid) begin
+      write_pixel_to_file(gaussian_pixel_out);
+    end
   end
 
 endmodule: pixel_loader_tb

@@ -122,7 +122,7 @@ module pixel_loader
 
   // setting read enable control signal for which buffers to read
   always_comb begin
-    rd_buffer_data_valid <= {4{rd_buffer_enable}};
+    rd_buffer_data_valid = {4{rd_buffer_enable}};
     case (curr_rd_buffer) 
       0: rd_buffer_data_valid[3] = 1'b0;
       1: rd_buffer_data_valid[0] = 1'b0;
