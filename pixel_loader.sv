@@ -14,7 +14,7 @@ module pixel_loader
   logic [$clog2(IMAGE_WIDTH)-1:0] pixel_counter;
   logic [$clog2(IMAGE_WIDTH)-1:0] rd_counter;
   logic [10:0] buffer_pixel_count;
-  logic rd_buffer_enable, rd_buffer_enable_next;
+  logic rd_buffer_enable;
   logic [1:0] curr_rd_buffer;
   logic [3:0] rd_buffer_data_valid;
   logic [23:0] buffer0_out, buffer1_out, buffer2_out, buffer3_out;
@@ -24,7 +24,7 @@ module pixel_loader
                               READ = 1'b1
                             } rd_buffer_enable_t;
   
-  rd_buffer_enable_t curr_state, next_state;
+  rd_buffer_enable_t curr_state;
 
   // pixel counter for write buffer switch every 512 pixels
   always @(posedge clk) begin
@@ -70,29 +70,22 @@ module pixel_loader
       rd_buffer_enable <= '0;
     end
     else begin       
-      curr_state <= next_state;
-      rd_buffer_enable <= rd_buffer_enable_next;
+      case (curr_state) 
+        IDLE: begin
+          if (buffer_pixel_count >= 1536) begin
+            rd_buffer_enable <= 1'b1;
+            curr_state <= READ;
+          end
+        end
+        READ: begin
+          if (rd_counter == 511) begin            
+            curr_state <= IDLE;
+            rd_buffer_enable <= 1'b0;
+          end
+        end
+      endcase
     end
   end 
-
-  always_comb begin
-    case (curr_state) 
-      next_state = curr_state;
-      rd_buffer_enable_next = rd_buffer_enable;
-      IDLE: begin
-        if (buffer_pixel_count >= 1536) begin
-          next_state = READ;
-          rd_buffer_enable_next = 1'b1;
-        end
-      end
-      READ: begin
-        if (rd_counter == 511) begin
-          next_state = IDLE;
-          rd_buffer_enable_next = 1'b0;
-        end
-      end
-    endcase
-  end
 
   // read counter logic for read buffer switch every 512 pixels
   always @(posedge clk) begin
@@ -125,7 +118,7 @@ module pixel_loader
   end
 
   //output of pixel loader is valid whenever the rd_buffer_enable is set
-  assign pixel_out_valid = rd_buffer_enable;
+  assign pixel_data_out_valid = rd_buffer_enable;
 
   // setting read enable control signal for which buffers to read
   always_comb begin
