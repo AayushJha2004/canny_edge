@@ -68,7 +68,7 @@ module pixel_loader_tb;
 
   // Reset and drive the pixel input with random values
   initial begin
-    clk = 0;
+    clk = 1;
     rstN = 0;
     pixel_in = 8'b0;
     pixel_in_valid = 0;
@@ -83,6 +83,7 @@ module pixel_loader_tb;
       pixel_in_valid = 1;  // Set the input valid
       #10;  // Wait for one clock cycle
     end
+    pixel_in_valid = 0;
   end
     
   int file2;
