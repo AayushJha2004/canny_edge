@@ -31,7 +31,7 @@ module pixel_loader_tb;
     .gaussian_pixel_out_valid(gaussian_pixel_out_valid)
   );
 
-  byte image_mem[512*512]; // Array to store image data (adjust as needed)
+  byte image_mem[512*512]; // Array to store image data 
 
   task read_txt_file;
     int file;               // File handle
@@ -39,7 +39,7 @@ module pixel_loader_tb;
     int i;                  // Loop index
     
     // Open the file for reading
-    file = $fopen("C:\\Users\\ROG\\Desktop\\canny_edge\\testImages\\images_binary\\t001.txt", "rb");
+    file = $fopen("C:\\Users\\ROG\\Desktop\\canny_edge\\testImages\\images_binary\\t029.txt", "rb");
     if (file == 0) begin
       $error("ERROR: Could not open the text file.");
       $finish;
@@ -78,9 +78,8 @@ module pixel_loader_tb;
     #20;
     rstN = 1;
 
-    // Drive random pixel values for 1024 pixels (for example, in 512x512 image)
     for (int i = 0; i < 262144; i++) begin
-      pixel_in = image_mem[i];  // Generate a random 8-bit value
+      pixel_in = image_mem[i]; 
       pixel_in_valid = 1;  // Set the input valid
       #10;  // Wait for one clock cycle
     end
@@ -92,7 +91,7 @@ module pixel_loader_tb;
     input logic [7:0] pixel_value;  // Pixel value to write
     begin
       // Open the file in append mode
-      file2 = $fopen("C:\\Users\\ROG\\Desktop\\canny_edge\\testImages\\output_image\\gaussian_output.txt", "a");
+      file2 = $fopen("C:\\Users\\ROG\\Desktop\\canny_edge\\testImages\\output_binary\\gaussian_output.txt", "a");
       if (file2) begin
         // Write the pixel value to the file (in binary format, followed by newline)
         $fwrite(file2, "%b\n", pixel_value);  // Write binary representation of the pixel

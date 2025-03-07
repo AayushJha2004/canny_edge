@@ -1,3 +1,5 @@
+`timescale 1ps/1ps
+
 module line_buffer
   import definitions_pkg::*;
 (

@@ -1,3 +1,5 @@
+`timescale 1ps/1ps
+
 module gaussian_filter
   import definitions_pkg::*;
 (
@@ -22,7 +24,10 @@ module gaussian_filter
     end
     else begin
       for (int i = 0; i < 9; i++) begin
-        mult_data[i] <= gaussian_kernel_3[i] * gaussian_data_in[i*8+:8];
+        if (^(gaussian_data_in[i*8+:8]) === 1'bX)
+          mult_data[i] <= gaussian_kernel_3[i] * 8'b0000_0000;
+        else
+          mult_data[i] <= gaussian_kernel_3[i] * gaussian_data_in[i*8+:8];
       end
       sum_data <= sum_data_next;
       gaussian_pixel_out <= (sum_data >> 4);
