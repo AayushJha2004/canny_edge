@@ -19,11 +19,11 @@ module gradient_calculation
   logic signed  [10:0] mult_data_y [8:0];
   logic signed  [10:0] sum_data_x, sum_data_x_next;
   logic signed  [10:0] sum_data_y, sum_data_y_next;
-  logic         [21:0] square_data_x, square_data_y;
+  logic         [20:0] square_data_x, square_data_y;
   logic square_data_valid;
   logic mult_data_valid, sum_data_valid;
-  // logic         [21:0] sqrt_ip;
-  // logic         [10:0] sqrt_op;
+  logic         [20:0] sqrt_ip;
+  logic         [10:0] sqrt_op;
 
   // pipeline for multiplication logic
   always @(posedge clk) begin
@@ -80,12 +80,12 @@ module gradient_calculation
     end
   end
 
-  // assign sqrt_ip = square_data_x + square_data_y;
+  assign sqrt_ip = square_data_x + square_data_y;
 
-  // sqrt_22b sl(
-  //   .value(sqrt_ip),
-  //   .sqrt(sqrt_op)
-  // );
+  sqrt_22b sl(
+    .value(sqrt_ip),
+    .sqrt(sqrt_op)
+  );
 
   // pipeline logic for gradient magnitude
   always @(posedge clk) begin
@@ -94,15 +94,15 @@ module gradient_calculation
       gradient_out_valid <= 1'b0;
     end
     else begin
-      gradient_magnitude <= square_data_x + square_data_y;
-      // gradient_magnitude <= sqrt_op;
+      // gradient_magnitude <= square_data_x + square_data_y;
+      gradient_magnitude <= sqrt_op;
       gradient_out_valid <= square_data_valid;
     end
   end
 
   // combo logic for intermediate pixel out for edge tracking
   always_comb begin
-    if (gradient_magnitude > 300)  pixel_out = 8'hff;
+    if (gradient_magnitude > 25)  pixel_out = 8'hff;
     else                            pixel_out = 8'h00;
   end
 

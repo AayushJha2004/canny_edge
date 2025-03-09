@@ -1,5 +1,7 @@
+`timescale 1ps/1ps
+
 module sqrt_22b_tb;
-  logic [21:0] value;
+  logic [20:0] value;
   logic [10:0] sqrt;
 
   sqrt_22b s1(
@@ -8,22 +10,10 @@ module sqrt_22b_tb;
   );
 
   initial begin
-    value = 100;
-    #10;
-    value = 167;
-    #10;
-    value = 1287293;
-    #10;
-    value = 734628;
-    #10;
-    value = 5677;
-    #10;
-    value = 19471;
-    #10;
-    value = 6346;
-    #10;
-    value = 50;
-    #10;
+    for (int i=0; i < 20808; i++) begin
+      value = i * 100;
+      #10;
+    end
     $finish;
   end
 
