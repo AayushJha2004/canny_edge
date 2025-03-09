@@ -11,9 +11,9 @@ module gaussian_filter
   output  logic         gaussian_pixel_out_valid
 );
 
-  reg [15:0] mult_data [8:0];
-  reg [15:0] sum_data, sum_data_next;
-  reg mult_data_valid, sum_data_valid;
+  logic [15:0] mult_data [8:0];
+  logic [15:0] sum_data, sum_data_next;
+  logic mult_data_valid, sum_data_valid;
 
   // sequential logic for multiplication data, sum data, and output data
   always @(posedge clk) begin
