@@ -37,6 +37,10 @@ module line_buffer
 
   // output is always driven for prefetch
   // output is updated when rd_enable is driven with rd_ptr update
-  assign o_data = {line[rdPtr], line[rdPtr + 1], line[rdPtr + 2]};
+  always_comb begin
+    if      (rdPtr == 511)  o_data = {line[rdPtr], 8'b0, 8'b0};
+    else if (rdPtr == 510)  o_data = {line[rdPtr], line[rdPtr + 1], 8'b0};
+    else                    o_data = {line[rdPtr], line[rdPtr + 1], line[rdPtr + 2]};   
+  end
 
 endmodule: line_buffer

@@ -10,14 +10,16 @@ module gradient_calculation
     output  logic [10:0]   gradient_magnitude,
     // output  logic [1:0]   gradient_direction,
     output  logic         gradient_out_valid,
-    // temp signals for sobel edge detection output 
     output  logic [7:0]   pixel_out,
     output  logic [7:0]   pixel_out_x, pixel_out_y, 
     output  logic         pixel_xy_valid
   );
 
-  logic signed  [10:0]  mult_data_x [8:0];
-  logic signed  [10:0]  mult_data_y [8:0];
+  logic signed  [ 8:0]  signed_gradient_data;
+  logic signed  [10:0]  mult_data_x       [8:0];
+  logic signed  [10:0]  mult_data_x_next  [8:0];
+  logic signed  [10:0]  mult_data_y       [8:0];
+  logic signed  [10:0]  mult_data_y_next  [8:0];
   logic signed  [10:0]  sum_data_x, sum_data_x_next;
   logic signed  [10:0]  sum_data_y, sum_data_y_next;
   logic         [20:0]  square_data_x, square_data_y;
@@ -35,18 +37,18 @@ module gradient_calculation
       mult_data_valid <= 1'b0;
     end
     else begin
-      for (int i=0; i < 9; i++) begin
-        if (^(gradient_data_in[i*8+:8]) === 1'bX) begin
-          mult_data_x[i] <= $signed(sobel_x[i]) * 9'sb0_0000_0000;
-          mult_data_y[i] <= $signed(sobel_y[i]) * 9'sb0_0000_0000;
-        end
-        else begin
-          mult_data_x[i] <= $signed(sobel_x[i]) * $signed({1'b0, gradient_data_in[i*8+:8]});
-          mult_data_y[i] <= $signed(sobel_y[i]) * $signed({1'b0, gradient_data_in[i*8+:8]});
-        end
-      end
+      mult_data_x     <= mult_data_x_next;
+      mult_data_y     <= mult_data_y_next;
       mult_data_valid <= gradient_data_in_valid;
     end
+  end
+
+  always_comb begin
+    for (int i=0; i < 9; i++) begin
+          signed_gradient_data = {1'b0, gradient_data_in[i*8+:8]};
+          mult_data_x_next[i]  = sobel_x[i] * signed_gradient_data;
+          mult_data_y_next[i]  = sobel_y[i] * signed_gradient_data;
+      end
   end
 
   // pipeline and combo logic for sum
@@ -80,8 +82,8 @@ module gradient_calculation
       square_data_valid <= 1'b0;
     end
     else begin
-      square_data_x <= $signed(sum_data_x) * $signed(sum_data_x);
-      square_data_y <= $signed(sum_data_y) * $signed(sum_data_y);
+      square_data_x <= sum_data_x * sum_data_x;
+      square_data_y <= sum_data_y * sum_data_y;
       square_data_valid <= sum_data_valid;
     end
   end

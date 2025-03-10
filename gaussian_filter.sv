@@ -24,9 +24,6 @@ module gaussian_filter
     end
     else begin
       for (int i = 0; i < 9; i++) begin
-        if (^(gaussian_data_in[i*8+:8]) === 1'bX)
-          mult_data[i] <= gaussian_kernel_3[i] * 8'b0000_0000;
-        else
           mult_data[i] <= gaussian_kernel_3[i] * gaussian_data_in[i*8+:8];
       end
       sum_data <= sum_data_next;

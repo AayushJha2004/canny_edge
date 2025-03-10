@@ -1,6 +1,5 @@
 module gradient_calculation_tb;
 
-  // Declare the signals for the pixel_loader module
   logic         clk;
   logic         rstN;
   logic [7:0]   pixel_in;
@@ -16,8 +15,7 @@ module gradient_calculation_tb;
   logic [7:0]   pixel_out_x, pixel_out_y;
   logic         pixel_xy_valid;
 
-  
-  // Instantiate the pixel_loader module
+
   pixel_loader pl1(
     .clk(clk),
     .rstN(rstN),
@@ -67,7 +65,7 @@ module gradient_calculation_tb;
     int i;                  // Loop index
     
     // Open the file for reading
-    file = $fopen("C:\\Users\\ROG\\Desktop\\canny_edge\\testImages\\images_binary\\t016.txt", "rb");
+    file = $fopen("C:\\Users\\ROG\\Desktop\\canny_edge\\testImages\\images_binary\\lena_gray.txt", "rb");
     if (file == 0) begin
       $error("ERROR: Could not open the text file.");
       $finish;
