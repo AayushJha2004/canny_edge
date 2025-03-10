@@ -8,22 +8,24 @@ module gradient_calculation
     input   logic [71:0]  gradient_data_in,
     input   logic         gradient_data_in_valid,
     output  logic [10:0]   gradient_magnitude,
-    // output  logic [7:0]   gradient_direction,
+    // output  logic [1:0]   gradient_direction,
     output  logic         gradient_out_valid,
-    // temp signals for intermediate edge detection output 
+    // temp signals for sobel edge detection output 
     output  logic [7:0]   pixel_out,
-    output  logic         pixel_out_valid        
+    output  logic [7:0]   pixel_out_x, pixel_out_y, 
+    output  logic         pixel_xy_valid
   );
 
-  logic signed  [10:0] mult_data_x [8:0];
-  logic signed  [10:0] mult_data_y [8:0];
-  logic signed  [10:0] sum_data_x, sum_data_x_next;
-  logic signed  [10:0] sum_data_y, sum_data_y_next;
-  logic         [20:0] square_data_x, square_data_y;
-  logic square_data_valid;
-  logic mult_data_valid, sum_data_valid;
-  logic         [20:0] sqrt_ip;
-  logic         [10:0] sqrt_op;
+  logic signed  [10:0]  mult_data_x [8:0];
+  logic signed  [10:0]  mult_data_y [8:0];
+  logic signed  [10:0]  sum_data_x, sum_data_x_next;
+  logic signed  [10:0]  sum_data_y, sum_data_y_next;
+  logic         [20:0]  square_data_x, square_data_y;
+  logic                 square_data_valid;
+  logic                 mult_data_valid, sum_data_valid;
+  logic         [20:0]  sqrt_ip;
+  logic         [10:0]  sqrt_op;
+  // logic         [1:0]   direction_stage1, direction_stage2; // need two stage pipeline delay in calculated gradient value to align it with gradient magnitude output
 
   // pipeline for multiplication logic
   always @(posedge clk) begin
@@ -34,10 +36,14 @@ module gradient_calculation
     end
     else begin
       for (int i=0; i < 9; i++) begin
-        if (^(gradient_data_in[i*8+:8]) === 1'bX)
+        if (^(gradient_data_in[i*8+:8]) === 1'bX) begin
           mult_data_x[i] <= $signed(sobel_x[i]) * 9'sb0_0000_0000;
-        else
+          mult_data_y[i] <= $signed(sobel_y[i]) * 9'sb0_0000_0000;
+        end
+        else begin
+          mult_data_x[i] <= $signed(sobel_x[i]) * $signed({1'b0, gradient_data_in[i*8+:8]});
           mult_data_y[i] <= $signed(sobel_y[i]) * $signed({1'b0, gradient_data_in[i*8+:8]});
+        end
       end
       mult_data_valid <= gradient_data_in_valid;
     end
@@ -102,8 +108,43 @@ module gradient_calculation
 
   // combo logic for intermediate pixel out for edge tracking
   always_comb begin
-    if (gradient_magnitude > 25)  pixel_out = 8'hff;
+    if (gradient_magnitude > 30)    pixel_out = 8'hff;
     else                            pixel_out = 8'h00;
   end
+
+  // combo logic for intermediate pixel out in x and y directions
+  always_comb begin
+    if ((sum_data_x > 30) | (sum_data_x < -30))  
+      pixel_out_x = 8'hff;
+    else                  
+      pixel_out_x = 8'h00;
+  end
+
+  always_comb begin
+    if ((sum_data_y > 30) | (sum_data_y < -30))  
+      pixel_out_y = 8'hff;
+    else                  
+      pixel_out_y = 8'h00;
+  end
+
+  assign pixel_xy_valid = sum_data_valid;
+
+  // // logic for gradient direction calculation
+  // arc_tan atan(
+  //   .Gx(sum_data_x), .Gy(sum_data_y),
+  //   .angle(direction_stage1)
+  // );
+
+  // // inserting two one stage of pipeline delay to match the valid of direction with gradient magnitude
+  // always @(posedge clk) begin
+  //   if (!rstN) begin
+  //     direction_stage2    <= '0;
+  //     gradient_direction  <= '0;
+  //   end
+  //   else begin
+  //     direction_stage2    <= direction_stage1;
+  //     gradient_direction  <= direction_stage2;
+  //   end
+  // end
 
 endmodule: gradient_calculation

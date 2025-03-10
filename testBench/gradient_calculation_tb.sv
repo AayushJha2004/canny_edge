@@ -10,9 +10,11 @@ module gradient_calculation_tb;
   logic [7:0]   gaussian_pixel_out;
   logic         gaussian_pixel_out_valid;
   logic [10:0]   gradient_magnitude;
-  // logic [7:0]   gradient_direction;
+  // logic [1:0]   gradient_direction;
   logic         gradient_out_valid; 
   logic [7:0]   pixel_out;
+  logic [7:0]   pixel_out_x, pixel_out_y;
+  logic         pixel_xy_valid;
 
   
   // Instantiate the pixel_loader module
@@ -51,7 +53,10 @@ module gradient_calculation_tb;
     .gradient_magnitude(gradient_magnitude),
     // .gradient_direction(gradient_direction),
     .gradient_out_valid(gradient_out_valid),
-    .pixel_out(pixel_out)
+    .pixel_out(pixel_out),
+    .pixel_out_x(pixel_out_x),
+    .pixel_out_y(pixel_out_y),
+    .pixel_xy_valid(pixel_xy_valid)
   );
 
   byte image_mem[512*512]; // Array to store image data 
@@ -62,7 +67,7 @@ module gradient_calculation_tb;
     int i;                  // Loop index
     
     // Open the file for reading
-    file = $fopen("C:\\Users\\ROG\\Desktop\\canny_edge\\testImages\\images_binary\\lena_gray.txt", "rb");
+    file = $fopen("C:\\Users\\ROG\\Desktop\\canny_edge\\testImages\\images_binary\\t016.txt", "rb");
     if (file == 0) begin
       $error("ERROR: Could not open the text file.");
       $finish;
@@ -144,6 +149,8 @@ module gradient_calculation_tb;
     clear_file("C:\\Users\\ROG\\Desktop\\canny_edge\\testImages\\output_binary\\gradient_magnitude.txt");
     // clear_file("C:\\Users\\ROG\\Desktop\\canny_edge\\testImages\\output_binary\\gradient_direction.txt");
     clear_file("C:\\Users\\ROG\\Desktop\\canny_edge\\testImages\\output_binary\\intermediate_edge.txt");
+    clear_file("C:\\Users\\ROG\\Desktop\\canny_edge\\testImages\\output_binary\\intermediate_x.txt");
+    clear_file("C:\\Users\\ROG\\Desktop\\canny_edge\\testImages\\output_binary\\intermediate_y.txt");
   end
 
   always @ (posedge clk) begin
@@ -154,6 +161,10 @@ module gradient_calculation_tb;
       write_pixel_to_file(gradient_magnitude, "C:\\Users\\ROG\\Desktop\\canny_edge\\testImages\\output_binary\\gradient_magnitude.txt");
       // write_pixel_to_file(gradient_direction, "C:\\Users\\ROG\\Desktop\\canny_edge\\testImages\\output_binary\\gradient_direction.txt");
       write_pixel_to_file(pixel_out, "C:\\Users\\ROG\\Desktop\\canny_edge\\testImages\\output_binary\\intermediate_edge.txt");
+    end
+    if (pixel_xy_valid) begin
+      write_pixel_to_file(pixel_out_x, "C:\\Users\\ROG\\Desktop\\canny_edge\\testImages\\output_binary\\intermediate_x.txt");
+      write_pixel_to_file(pixel_out_y, "C:\\Users\\ROG\\Desktop\\canny_edge\\testImages\\output_binary\\intermediate_y.txt");
     end
   end
 
