@@ -8,7 +8,7 @@ module gradient_calculation
     input   logic [71:0]  gradient_data_in,
     input   logic         gradient_data_in_valid,
     output  logic [10:0]   gradient_magnitude,
-    // output  logic [1:0]   gradient_direction,
+    output  logic [1:0]   gradient_direction,
     output  logic         gradient_out_valid,
     output  logic [7:0]   pixel_out,
     output  logic [7:0]   pixel_out_x, pixel_out_y, 
@@ -27,7 +27,8 @@ module gradient_calculation
   logic                 mult_data_valid, sum_data_valid;
   logic         [20:0]  sqrt_ip;
   logic         [10:0]  sqrt_op;
-  // logic         [1:0]   direction_stage1, direction_stage2; // need two stage pipeline delay in calculated gradient value to align it with gradient magnitude output
+  // need two stage pipeline delay in calculated gradient value to align it with gradient magnitude output
+  logic         [1:0]   direction_stage1, direction_stage2; 
 
   // pipeline for multiplication logic
   always @(posedge clk) begin
@@ -131,22 +132,22 @@ module gradient_calculation
 
   assign pixel_xy_valid = sum_data_valid;
 
-  // // logic for gradient direction calculation
-  // arc_tan atan(
-  //   .Gx(sum_data_x), .Gy(sum_data_y),
-  //   .angle(direction_stage1)
-  // );
+  // logic for gradient direction calculation
+  arc_tan atan(
+    .Gx(sum_data_x), .Gy(sum_data_y),
+    .angle(direction_stage1)
+  );
 
-  // // inserting two one stage of pipeline delay to match the valid of direction with gradient magnitude
-  // always @(posedge clk) begin
-  //   if (!rstN) begin
-  //     direction_stage2    <= '0;
-  //     gradient_direction  <= '0;
-  //   end
-  //   else begin
-  //     direction_stage2    <= direction_stage1;
-  //     gradient_direction  <= direction_stage2;
-  //   end
-  // end
+  // inserting two one stage of pipeline delay to match the valid of direction with gradient magnitude
+  always @(posedge clk) begin
+    if (!rstN) begin
+      direction_stage2    <= '0;
+      gradient_direction  <= '0;
+    end
+    else begin
+      direction_stage2    <= direction_stage1;
+      gradient_direction  <= direction_stage2;
+    end
+  end
 
 endmodule: gradient_calculation

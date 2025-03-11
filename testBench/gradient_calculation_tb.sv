@@ -9,7 +9,7 @@ module gradient_calculation_tb;
   logic [7:0]   gaussian_pixel_out;
   logic         gaussian_pixel_out_valid;
   logic [10:0]   gradient_magnitude;
-  // logic [1:0]   gradient_direction;
+  logic [1:0]   gradient_direction;
   logic         gradient_out_valid; 
   logic [7:0]   pixel_out;
   logic [7:0]   pixel_out_x, pixel_out_y;
@@ -49,7 +49,7 @@ module gradient_calculation_tb;
     .gradient_data_in(pl2_data_out),
     .gradient_data_in_valid(pl2_data_out_valid),
     .gradient_magnitude(gradient_magnitude),
-    // .gradient_direction(gradient_direction),
+    .gradient_direction(gradient_direction),
     .gradient_out_valid(gradient_out_valid),
     .pixel_out(pixel_out),
     .pixel_out_x(pixel_out_x),
@@ -145,7 +145,7 @@ module gradient_calculation_tb;
   initial begin
     clear_file("C:\\Users\\ROG\\Desktop\\canny_edge\\testImages\\output_binary\\gaussian_output.txt");
     clear_file("C:\\Users\\ROG\\Desktop\\canny_edge\\testImages\\output_binary\\gradient_magnitude.txt");
-    // clear_file("C:\\Users\\ROG\\Desktop\\canny_edge\\testImages\\output_binary\\gradient_direction.txt");
+    clear_file("C:\\Users\\ROG\\Desktop\\canny_edge\\testImages\\output_binary\\gradient_direction.txt");
     clear_file("C:\\Users\\ROG\\Desktop\\canny_edge\\testImages\\output_binary\\intermediate_edge.txt");
     clear_file("C:\\Users\\ROG\\Desktop\\canny_edge\\testImages\\output_binary\\intermediate_x.txt");
     clear_file("C:\\Users\\ROG\\Desktop\\canny_edge\\testImages\\output_binary\\intermediate_y.txt");
@@ -157,7 +157,7 @@ module gradient_calculation_tb;
     end
     if (gradient_out_valid) begin
       write_pixel_to_file(gradient_magnitude, "C:\\Users\\ROG\\Desktop\\canny_edge\\testImages\\output_binary\\gradient_magnitude.txt");
-      // write_pixel_to_file(gradient_direction, "C:\\Users\\ROG\\Desktop\\canny_edge\\testImages\\output_binary\\gradient_direction.txt");
+      write_pixel_to_file(gradient_direction, "C:\\Users\\ROG\\Desktop\\canny_edge\\testImages\\output_binary\\gradient_direction.txt");
       write_pixel_to_file(pixel_out, "C:\\Users\\ROG\\Desktop\\canny_edge\\testImages\\output_binary\\intermediate_edge.txt");
     end
     if (pixel_xy_valid) begin
