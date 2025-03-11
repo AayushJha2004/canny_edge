@@ -1,5 +1,3 @@
-`timescale 1ps/1ps
-
 module gaussian_filter
   import definitions_pkg::*;
 (

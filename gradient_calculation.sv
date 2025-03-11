@@ -1,5 +1,3 @@
-`timescale 1ps/1ps
-
 module gradient_calculation
   import definitions_pkg::*;
   (

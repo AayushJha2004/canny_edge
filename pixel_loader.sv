@@ -1,5 +1,3 @@
-`timescale 1ps/1ps
-
 module pixel_loader
   import definitions_pkg::*;
 (
