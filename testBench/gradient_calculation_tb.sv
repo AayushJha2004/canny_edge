@@ -67,7 +67,7 @@ module gradient_calculation_tb;
     int i;                  // Loop index
     
     // Open the file for reading
-    file = $fopen("C:\\Users\\ROG\\Desktop\\canny_edge\\testImages\\images_binary\\t069.txt", "rb");
+    file = $fopen("C:\\Users\\ROG\\Desktop\\canny_edge\\testImages\\images_binary\\lena_gray.txt", "rb");
     if (file == 0) begin
       $error("ERROR: Could not open the text file.");
       $finish;
@@ -144,6 +144,22 @@ module gradient_calculation_tb;
     end
   endtask
 
+  task write_rgb_to_file;
+    input logic [23:0] pixel_value;  // Pixel value to write
+    input string path;
+    begin
+      // Open the file in append mode
+      file2 = $fopen(path, "a");
+      if (file2) begin
+        // Write the pixel value to the file (in binary format, followed by newline)
+        $fwrite(file2, "%b\n", pixel_value);  // Write binary representation of the pixel
+        $fclose(file2);  // Close the file after writing
+      end else begin
+        $display("Error: Unable to open file for writing.");
+      end
+    end
+  endtask
+
   initial begin
     clear_file("C:\\Users\\ROG\\Desktop\\canny_edge\\testImages\\output_binary\\gaussian_output.txt");
     clear_file("C:\\Users\\ROG\\Desktop\\canny_edge\\testImages\\output_binary\\gradient_magnitude.txt");
@@ -151,6 +167,7 @@ module gradient_calculation_tb;
     clear_file("C:\\Users\\ROG\\Desktop\\canny_edge\\testImages\\output_binary\\intermediate_edge.txt");
     clear_file("C:\\Users\\ROG\\Desktop\\canny_edge\\testImages\\output_binary\\intermediate_x.txt");
     clear_file("C:\\Users\\ROG\\Desktop\\canny_edge\\testImages\\output_binary\\intermediate_y.txt");
+    clear_file("C:\\Users\\ROG\\Desktop\\canny_edge\\testImages\\output_binary\\direction_contour.txt");
   end
 
   always @ (posedge clk) begin
@@ -160,6 +177,12 @@ module gradient_calculation_tb;
     if (gradient_out_valid) begin
       write_pixel_to_file(gradient_magnitude, "C:\\Users\\ROG\\Desktop\\canny_edge\\testImages\\output_binary\\gradient_magnitude.txt");
       write_pixel_to_file(gradient_direction, "C:\\Users\\ROG\\Desktop\\canny_edge\\testImages\\output_binary\\gradient_direction.txt");
+      case (gradient_direction)
+        0: write_rgb_to_file(24'h0000FF, "C:\\Users\\ROG\\Desktop\\canny_edge\\testImages\\output_binary\\direction_contour.txt");
+        1: write_rgb_to_file(24'h00FF00, "C:\\Users\\ROG\\Desktop\\canny_edge\\testImages\\output_binary\\direction_contour.txt");
+        2: write_rgb_to_file(24'hFF0000, "C:\\Users\\ROG\\Desktop\\canny_edge\\testImages\\output_binary\\direction_contour.txt");
+        3: write_rgb_to_file(24'hFFFF00, "C:\\Users\\ROG\\Desktop\\canny_edge\\testImages\\output_binary\\direction_contour.txt");
+      endcase
       write_pixel_to_file(pixel_out, "C:\\Users\\ROG\\Desktop\\canny_edge\\testImages\\output_binary\\intermediate_edge.txt");
     end
     if (pixel_xy_valid) begin
