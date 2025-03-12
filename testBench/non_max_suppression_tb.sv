@@ -1,13 +1,15 @@
 `timescale 1ps/1ps
 
-module gradient_calculation_tb;
+module nms_tb;
 
   logic         clk;
   logic         rstN;
   logic [7:0]   pixel_in;
   logic         pixel_in_valid;
   logic [71:0]  pl1_data_out, pl2_data_out;
-  logic         pl1_data_out_valid, pl2_data_out_valid;
+  logic [98:0]  pl3_data_out; 
+  logic [17:0]  pl4_data_out;
+  logic         pl1_data_out_valid, pl2_data_out_valid, pl3_data_out_valid, pl4_data_out_valid;
   logic [7:0]   gaussian_pixel_out;
   logic         gaussian_pixel_out_valid;
   logic [10:0]   gradient_magnitude;
@@ -16,6 +18,9 @@ module gradient_calculation_tb;
   logic [7:0]   pixel_out;
   logic [7:0]   pixel_out_x, pixel_out_y;
   logic         pixel_xy_valid;
+  logic [10:0]  nms_magnitude;
+  logic [1:0]   nms_direction;
+  logic         nms_valid;
 
 
   pixel_loader pl1(
@@ -59,6 +64,35 @@ module gradient_calculation_tb;
     .pixel_xy_valid(pixel_xy_valid)
   );
 
+  pixel_loader #(.ITEM_SIZE(11)) pl3(
+    .clk(clk),
+    .rstN(rstN),
+    .pixel_in(gradient_magnitude),
+    .pixel_in_valid(gradient_out_valid),
+    .pixel_data_out(pl3_data_out),
+    .pixel_data_out_valid(pl3_data_out_valid)
+  );
+
+  pixel_loader #(.ITEM_SIZE(2)) pl4(
+    .clk(clk),
+    .rstN(rstN),
+    .pixel_in(gradient_direction),
+    .pixel_in_valid(gradient_out_valid),
+    .pixel_data_out(pl4_data_out),
+    .pixel_data_out_valid(pl4_data_out_valid)
+  );
+
+  non_max_suppression nms(
+    .clk(clk),
+    .rstN(rstN),
+    .gradient_magnitude(pl3_data_out),
+    .gradient_direction(pl4_data_out),
+    .gradient_data_valid(pl3_data_out_valid),
+    .nms_magnitude(nms_magnitude),
+    .nms_direction(nms_direction),
+    .nms_valid(nms_valid)
+  );
+
   byte image_mem[512*512]; // Array to store image data 
 
   task read_txt_file;
@@ -67,7 +101,7 @@ module gradient_calculation_tb;
     int i;                  // Loop index
     
     // Open the file for reading
-    file = $fopen("C:\\Users\\ROG\\Desktop\\canny_edge\\testImages\\images_binary\\lena_gray.txt", "rb");
+    file = $fopen("C:\\Users\\ROG\\Desktop\\canny_edge\\testImages\\images_binary\\t002.txt", "rb");
     if (file == 0) begin
       $error("ERROR: Could not open the text file.");
       $finish;
@@ -168,6 +202,8 @@ module gradient_calculation_tb;
     clear_file("C:\\Users\\ROG\\Desktop\\canny_edge\\testImages\\output_binary\\intermediate_x.txt");
     clear_file("C:\\Users\\ROG\\Desktop\\canny_edge\\testImages\\output_binary\\intermediate_y.txt");
     clear_file("C:\\Users\\ROG\\Desktop\\canny_edge\\testImages\\output_binary\\direction_contour.txt");
+    clear_file("C:\\Users\\ROG\\Desktop\\canny_edge\\testImages\\output_binary\\nms.txt");
+    clear_file("C:\\Users\\ROG\\Desktop\\canny_edge\\testImages\\output_binary\\nms_dir.txt");
   end
 
   always @ (posedge clk) begin
@@ -189,6 +225,10 @@ module gradient_calculation_tb;
       write_pixel_to_file(pixel_out_x, "C:\\Users\\ROG\\Desktop\\canny_edge\\testImages\\output_binary\\intermediate_x.txt");
       write_pixel_to_file(pixel_out_y, "C:\\Users\\ROG\\Desktop\\canny_edge\\testImages\\output_binary\\intermediate_y.txt");
     end
+    if (nms_valid) begin
+      write_pixel_to_file(nms_magnitude, "C:\\Users\\ROG\\Desktop\\canny_edge\\testImages\\output_binary\\nms.txt");
+      write_pixel_to_file(nms_direction, "C:\\Users\\ROG\\Desktop\\canny_edge\\testImages\\output_binary\\nms_dir.txt");
+    end
   end
 
-endmodule: gradient_calculation_tb
+endmodule: nms_tb
