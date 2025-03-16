@@ -92,8 +92,6 @@ module canny_edge_top
   );
 
   non_max_suppression nms(
-    .clk(clk),
-    .rstN(rstN),
     .gradient_magnitude(pl3_data_out),
     .gradient_direction(pl4_data_out),
     .gradient_data_valid(pl3_data_out_valid),
@@ -103,8 +101,6 @@ module canny_edge_top
   );
 
   double_threshold db(
-    .clk(clk),
-    .rstN(rstN),
     .magnitude(nms_magnitude),
     .mag_valid(nms_valid),
     .strength(strength),
@@ -121,8 +117,6 @@ module canny_edge_top
   );
 
   hysteresis ht(
-    .clk(clk),
-    .rstN(rstN),
     .strength(pl5_data_out),
     .str_valid(pl5_data_out_valid),
     .edge_out(pixel_out),

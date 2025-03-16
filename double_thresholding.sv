@@ -1,8 +1,6 @@
 module double_threshold
   import definitions_pkg::*;
   (
-    input   logic clk,
-    input   logic rstN,
     input   logic [10:0] magnitude,
     input   logic        mag_valid,
     output  logic [1:0]  strength, // 0 = no edge, 1 = weak edge, 2 = strong edge

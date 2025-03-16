@@ -1,8 +1,6 @@
 module hysteresis
   import definitions_pkg::*;
   (
-    input   logic         clk,
-    input   logic         rstN,
     input   logic [17:0]  strength,
     input   logic         str_valid,
     output  logic [7:0]   edge_out,

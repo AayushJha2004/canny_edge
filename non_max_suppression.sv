@@ -1,8 +1,6 @@
 module non_max_suppression
   import definitions_pkg::*;
   (
-    input   logic clk,
-    input   logic rstN,
     input   logic [98:0]  gradient_magnitude,
     input   logic [17:0]  gradient_direction,
     input   logic         gradient_data_valid,
@@ -26,19 +24,19 @@ module non_max_suppression
     case (curr_direction) 
       0: begin
         if ((curr_magnitude <= gradient_magnitude[65:55]) || (curr_magnitude <= gradient_magnitude[43:33]))
-          nms_magnitude <= '0;
+          nms_magnitude = '0;
       end
       1: begin
         if ((curr_magnitude <= gradient_magnitude[98:88]) || (curr_magnitude <= gradient_magnitude[10:0]))
-          nms_magnitude <= '0;
+          nms_magnitude = '0;
       end
       2: begin
         if ((curr_magnitude <= gradient_magnitude[87:77]) || (curr_magnitude <= gradient_magnitude[21:11]))
-          nms_magnitude <= '0;
+          nms_magnitude = '0;
       end
       3: begin
         if ((curr_magnitude <= gradient_magnitude[76:66]) || (curr_magnitude <= gradient_magnitude[32:21]))
-          nms_magnitude <= '0;
+          nms_magnitude = '0;
       end
     endcase
   end
