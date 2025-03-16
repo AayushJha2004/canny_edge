@@ -19,6 +19,7 @@ module pixel_loader
   logic [1:0] curr_rd_buffer;
   logic [3:0] rd_buffer_data_valid;
   logic [3*ITEM_SIZE-1:0] buffer0_out, buffer1_out, buffer2_out, buffer3_out;
+  logic [$clog2(IMAGE_WIDTH)-1:0] row_counter;
 
   typedef enum logic [0:0]  {
                               IDLE = 1'b0,
@@ -61,6 +62,16 @@ module pixel_loader
         buffer_pixel_count <= buffer_pixel_count + 1;
       else if (!pixel_in_valid & rd_buffer_enable) 
         buffer_pixel_count <= buffer_pixel_count - 1;
+    end
+  end
+
+  // sequential block to count the number of image rows that have been read
+  always @(posedge clk) begin
+    if (!rstN) begin
+      row_counter <= '0;
+    end
+    else if (rd_counter == 511) begin
+      row_counter <= row_counter + 1;
     end
   end
 

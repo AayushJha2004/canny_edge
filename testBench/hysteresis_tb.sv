@@ -1,6 +1,6 @@
 `timescale 1ps/1ps
 
-module nms_tb;
+module hysteresis_tb;
 
   logic         clk;
   logic         rstN;
@@ -8,20 +8,24 @@ module nms_tb;
   logic         pixel_in_valid;
   logic [71:0]  pl1_data_out, pl2_data_out;
   logic [98:0]  pl3_data_out; 
+  logic [17:0]  pl5_data_out;
   logic [17:0]  pl4_data_out;
-  logic         pl1_data_out_valid, pl2_data_out_valid, pl3_data_out_valid, pl4_data_out_valid;
+  logic         pl1_data_out_valid, pl2_data_out_valid, pl3_data_out_valid, pl4_data_out_valid, pl5_data_out_valid;
   logic [7:0]   gaussian_pixel_out;
   logic         gaussian_pixel_out_valid;
-  logic [10:0]   gradient_magnitude;
+  logic [10:0]  gradient_magnitude;
   logic [1:0]   gradient_direction;
   logic         gradient_out_valid; 
-  logic [7:0]   pixel_out;
-  logic [7:0]   pixel_out_x, pixel_out_y;
-  logic         pixel_xy_valid;
+  logic [7:0]   sobel_out;
+  logic [7:0]   sobel_out_x, sobel_out_y;
+  logic         sobel_xy_valid;
   logic [10:0]  nms_magnitude;
   logic [1:0]   nms_direction;
   logic         nms_valid;
-
+  logic [1:0]   strength;
+  logic         str_valid;
+  logic [7:0]   pixel_out;
+  logic         pixel_out_valid;
 
   pixel_loader pl1(
     .clk(clk),
@@ -58,10 +62,10 @@ module nms_tb;
     .gradient_magnitude(gradient_magnitude),
     .gradient_direction(gradient_direction),
     .gradient_out_valid(gradient_out_valid),
-    .pixel_out(pixel_out),
-    .pixel_out_x(pixel_out_x),
-    .pixel_out_y(pixel_out_y),
-    .pixel_xy_valid(pixel_xy_valid)
+    .pixel_out(sobel_out),
+    .pixel_out_x(sobel_out_x),
+    .pixel_out_y(sobel_out_y),
+    .pixel_xy_valid(sobel_xy_valid)
   );
 
   pixel_loader #(.ITEM_SIZE(11)) pl3(
@@ -93,6 +97,33 @@ module nms_tb;
     .nms_valid(nms_valid)
   );
 
+  double_threshold db(
+    .clk(clk),
+    .rstN(rstN),
+    .magnitude(nms_magnitude),
+    .mag_valid(nms_valid),
+    .strength(strength),
+    .str_valid(str_valid)
+  );
+
+  pixel_loader #(.ITEM_SIZE(2)) pl5(
+    .clk(clk),
+    .rstN(rstN),
+    .pixel_in(strength),
+    .pixel_in_valid(str_valid),
+    .pixel_data_out(pl5_data_out),
+    .pixel_data_out_valid(pl5_data_out_valid)
+  );
+
+  hysteresis ht(
+    .clk(clk),
+    .rstN(rstN),
+    .strength(pl5_data_out),
+    .str_valid(pl5_data_out_valid),
+    .edge_out(pixel_out),
+    .edge_out_valid(pixel_out_valid)
+  );
+
   byte image_mem[512*512]; // Array to store image data 
 
   task read_txt_file;
@@ -101,7 +132,7 @@ module nms_tb;
     int i;                  // Loop index
     
     // Open the file for reading
-    file = $fopen("C:\\Users\\ROG\\Desktop\\canny_edge\\testImages\\images_binary\\lena_gray.txt", "rb");
+    file = $fopen("C:\\Users\\ROG\\Desktop\\canny_edge\\testImages\\images_binary\\t291.txt", "rb");
     if (file == 0) begin
       $error("ERROR: Could not open the text file.");
       $finish;
@@ -204,6 +235,7 @@ module nms_tb;
     clear_file("C:\\Users\\ROG\\Desktop\\canny_edge\\testImages\\output_binary\\direction_contour.txt");
     clear_file("C:\\Users\\ROG\\Desktop\\canny_edge\\testImages\\output_binary\\nms.txt");
     clear_file("C:\\Users\\ROG\\Desktop\\canny_edge\\testImages\\output_binary\\nms_dir.txt");
+    clear_file("C:\\Users\\ROG\\Desktop\\canny_edge\\testImages\\output_binary\\edge.txt");
   end
 
   always @ (posedge clk) begin
@@ -219,16 +251,20 @@ module nms_tb;
         2: write_rgb_to_file(24'hFF0000, "C:\\Users\\ROG\\Desktop\\canny_edge\\testImages\\output_binary\\direction_contour.txt");
         3: write_rgb_to_file(24'hFFFF00, "C:\\Users\\ROG\\Desktop\\canny_edge\\testImages\\output_binary\\direction_contour.txt");
       endcase
-      write_pixel_to_file(pixel_out, "C:\\Users\\ROG\\Desktop\\canny_edge\\testImages\\output_binary\\intermediate_edge.txt");
+      write_pixel_to_file(sobel_out, "C:\\Users\\ROG\\Desktop\\canny_edge\\testImages\\output_binary\\intermediate_edge.txt");
     end
-    if (pixel_xy_valid) begin
-      write_pixel_to_file(pixel_out_x, "C:\\Users\\ROG\\Desktop\\canny_edge\\testImages\\output_binary\\intermediate_x.txt");
-      write_pixel_to_file(pixel_out_y, "C:\\Users\\ROG\\Desktop\\canny_edge\\testImages\\output_binary\\intermediate_y.txt");
+    if (sobel_xy_valid) begin
+      write_pixel_to_file(sobel_out_x, "C:\\Users\\ROG\\Desktop\\canny_edge\\testImages\\output_binary\\intermediate_x.txt");
+      write_pixel_to_file(sobel_out_y, "C:\\Users\\ROG\\Desktop\\canny_edge\\testImages\\output_binary\\intermediate_y.txt");
     end
     if (nms_valid) begin
       write_pixel_to_file(nms_magnitude, "C:\\Users\\ROG\\Desktop\\canny_edge\\testImages\\output_binary\\nms.txt");
       write_pixel_to_file(nms_direction, "C:\\Users\\ROG\\Desktop\\canny_edge\\testImages\\output_binary\\nms_dir.txt");
     end
+    if (pixel_out_valid) begin
+      write_pixel_to_file(pixel_out,
+      "C:\\Users\\ROG\\Desktop\\canny_edge\\testImages\\output_binary\\edge.txt");
+    end
   end
 
-endmodule: nms_tb
+endmodule: hysteresis_tb
