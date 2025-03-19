@@ -94,7 +94,8 @@ module canny_edge_top
   non_max_suppression nms(
     .gradient_magnitude(pl3_data_out),
     .gradient_direction(pl4_data_out),
-    .gradient_data_valid(pl3_data_out_valid),
+    .gradient_mag_valid(pl3_data_out_valid),
+    .gradient_dir_valid(pl4_data_out_valid),
     .nms_magnitude(nms_magnitude),
     .nms_direction(nms_direction),
     .nms_valid(nms_valid)
