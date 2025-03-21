@@ -3,14 +3,10 @@ module canny_edge_top
   (
     input   logic       clk, 
     input   logic       rstN,
-    // canny edge IP as AXI Slave 
     input   logic [7:0] pixel_in,
     input   logic       pixel_in_valid,
-    // output  logic       in_ready,
-    // canny edge IP as AXI Master
     output  logic [7:0] pixel_out,
     output  logic       pixel_out_valid
-    // input   logic       out_ready
   );
 
   logic [71:0]  pl1_data_out, pl2_data_out;

@@ -1,5 +1,17 @@
 package definitions_pkg;
-  parameter IMAGE_WIDTH = 512;
+  parameter IMAGE_WIDTH   = 512;
+
+  // FIFO params
+
+  parameter FIFO_WIDTH = 8;         // each entry is 1 byte pixel
+  // parameter FIFO_DEPTH = 8192;   // can buffer upto 16 image rows
+  parameter FIFO_DEPTH = 8;         // fifo vector test size for test bench  
+
+  // UART params
+  parameter int   CLK_FREQ      = 10_000_000;              
+  parameter int   BAUD_RATE     = 625000;                     
+  parameter real  CLK_PER_BIT   = CLK_FREQ / BAUD_RATE;        
+  parameter int   OVERSAMPLE    = 16;                           
 
   const logic [7:0] gaussian_kernel_3 [0:8] =  '{
     8'h1, 8'h2, 8'h1, 
