@@ -19,7 +19,7 @@ module uart_tx
 
   state_t state_reg, state_next;
   logic [$clog2(OVERSAMPLE)-1:0] s_reg, s_next;
-  logic [7:0] n_reg, n_next;
+  logic [2:0] n_reg, n_next;
   logic [7:0] data_reg, data_next;
   logic [7:0] tx_reg, tx_next;
 
