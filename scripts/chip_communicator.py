@@ -1,6 +1,6 @@
 import serial
 
-def send_pixels(serial_port, input_file, output_file, baudrate=312500):
+def send_pixels(serial_port, input_file, output_file, baudrate=625000):
     with serial.Serial(serial_port, baudrate=baudrate, bytesize=serial.EIGHTBITS,
                        parity=serial.PARITY_NONE, stopbits=serial.STOPBITS_ONE, timeout=1) as ser:
         with open(input_file, 'rb') as infile, open(output_file, 'w') as outfile:

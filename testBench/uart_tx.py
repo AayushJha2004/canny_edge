@@ -20,4 +20,4 @@ def read_binary(serial_port: str, baudrate: int):
         print(f"Error: {e}")
 
 
-read_binary(serial_port='COM6', baudrate=312500)
+read_binary(serial_port='COM6', baudrate=625000)

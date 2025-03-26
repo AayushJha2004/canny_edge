@@ -6,7 +6,7 @@ package definitions_pkg;
   parameter FIFO_DEPTH = 8192;   // can buffer upto 16 image rows
 
   // UART params
-  parameter int   CLK_FREQ      = 100_000_000;              
+  parameter int   CLK_FREQ      = 10_000_000;              
   parameter int   BAUD_RATE     = 312500;                     
   parameter real  CLK_PER_BIT   = CLK_FREQ / BAUD_RATE;        
   parameter int   OVERSAMPLE    = 16;      

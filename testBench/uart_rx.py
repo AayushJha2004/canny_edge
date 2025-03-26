@@ -26,4 +26,4 @@ def transmit_binary(serial_port: str, baudrate: int, binary_data: str):
         print(f"Error: {e}")
 
 
-transmit_binary(serial_port='COM6', baudrate=312500, binary_data='11000110')
+transmit_binary(serial_port='COM6', baudrate=625000, binary_data='00110011')

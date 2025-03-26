@@ -7,17 +7,19 @@ module uart_top
     output  logic tx,
 
     // receiver FIFO
-    input   logic rx_rd,
     output  logic [FIFO_WIDTH-1:0] rx_rd_data,
-    output  logic rx_empty, rx_valid,
+    output  logic rx_valid,
 
     // transmitter FIFO
     input   logic [FIFO_WIDTH-1:0] tx_wr_data,
-    input   logic tx_wr,
-    output  logic tx_full
+    input   logic tx_wr
   );
 
   logic s_tick;
+  logic tx_full;
+  logic rx_rd;
+
+  assign rx_rd = ~tx_full;
 
   // receiver ports
   logic [7:0] dout;
@@ -31,6 +33,7 @@ module uart_top
   // transmitter fifo ports
   logic [FIFO_WIDTH-1:0] tx_rd_data;
   logic tx_empty, tx_valid;
+  logic rx_empty;
 
   
   baud_gen baud_gen_inst (
@@ -42,6 +45,7 @@ module uart_top
   uart_tx uart_tx_inst(
     .clk(clk),
     .rstN(rstN),
+    .s_tick(s_tick),
     .din(tx_rd_data),
     .tx_start(tx_valid),
     .tx(tx),
@@ -51,6 +55,7 @@ module uart_top
   uart_rx uart_rx_inst(
     .clk(clk),
     .rstN(rstN),
+    .s_tick(s_tick),
     .rx(rx),
     .dout(dout),
     .rx_done(rx_done)
