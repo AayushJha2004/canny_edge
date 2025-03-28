@@ -26,8 +26,6 @@ module uart_top
   logic rx_done;
 
   // transmitter ports
-  logic tx_start;
-  logic [7:0] din;
   logic tx_done;
 
   // transmitter fifo ports
