@@ -1,0 +1,288 @@
+*** Start analyzing build configuration ***
+INFO: Auto-config - Scanning: /Users/aayush/Desktop/canny_edge
+INFO: Auto-config - VLOG: /Users/aayush/Desktop/canny_edge
+INFO: Auto-config - Wrote:
+    .dvt/default.build.auto.1
+*** List of included argument files ***
+    Build configuration file:  /Users/aayush/Desktop/canny_edge/.dvt/default.build
+    -f /Users/aayush/Desktop/canny_edge/.dvt/default.build.auto.1
+*** List of invocations ***
+Invocation #1 +dvt_init+dvt in /Users/aayush/Desktop/canny_edge/.dvt/default.build.auto.1 at line 9
+*** Done analyzing build configuration [158 ms] ***
+
+*** Start SystemVerilog build ***
+*** Invocation #1***
+Loading (1) /Users/aayush/Desktop/canny_edge/arc_tan.sv ...
+Done /Users/aayush/Desktop/canny_edge/arc_tan.sv [17 ms, 42 lines, SystemVerilog_2012] ...
+Loading (2) /Users/aayush/Desktop/canny_edge/sqrt_22b.sv ...
+Done /Users/aayush/Desktop/canny_edge/sqrt_22b.sv [39 ms, 43 lines, SystemVerilog_2012] ...
+Loading (3) /Users/aayush/Desktop/canny_edge/testBench/arc_tan_tb.sv ...
+Done /Users/aayush/Desktop/canny_edge/testBench/arc_tan_tb.sv [9 ms, 53 lines, SystemVerilog_2012] ...
+Loading (4) /Users/aayush/Desktop/canny_edge/testBench/canny_edge_tb.sv ...
+Done /Users/aayush/Desktop/canny_edge/testBench/canny_edge_tb.sv [9 ms, 134 lines, SystemVerilog_2012] ...
+Loading (5) /Users/aayush/Desktop/canny_edge/testBench/gradient_calculation_tb.sv ...
+Done /Users/aayush/Desktop/canny_edge/testBench/gradient_calculation_tb.sv [14 ms, 195 lines, SystemVerilog_2012] ...
+Loading (6) /Users/aayush/Desktop/canny_edge/testBench/hysteresis_tb.sv ...
+Done /Users/aayush/Desktop/canny_edge/testBench/hysteresis_tb.sv [24 ms, 271 lines, SystemVerilog_2012] ...
+Loading (7) /Users/aayush/Desktop/canny_edge/testBench/non_max_suppression_tb.sv ...
+Done /Users/aayush/Desktop/canny_edge/testBench/non_max_suppression_tb.sv [21 ms, 235 lines, SystemVerilog_2012] ...
+Loading (8) /Users/aayush/Desktop/canny_edge/testBench/pixel_loader_tb.sv ...
+Done /Users/aayush/Desktop/canny_edge/testBench/pixel_loader_tb.sv [5 ms, 114 lines, SystemVerilog_2012] ...
+Loading (9) /Users/aayush/Desktop/canny_edge/testBench/rx_top.sv ...
+Done /Users/aayush/Desktop/canny_edge/testBench/rx_top.sv [1 ms, 28 lines, SystemVerilog_2012] ...
+Loading (10) /Users/aayush/Desktop/canny_edge/testBench/sqrt_22b_tb.sv ...
+Done /Users/aayush/Desktop/canny_edge/testBench/sqrt_22b_tb.sv [2 ms, 21 lines, SystemVerilog_2012] ...
+Loading (11) /Users/aayush/Desktop/canny_edge/testBench/tx_top.sv ...
+Done /Users/aayush/Desktop/canny_edge/testBench/tx_top.sv [1 ms, 30 lines, SystemVerilog_2012] ...
+Loading (12) /Users/aayush/Desktop/canny_edge/definitions_pkg.sv ...
+Done /Users/aayush/Desktop/canny_edge/definitions_pkg.sv [2 ms, 37 lines, SystemVerilog_2012] ...
+Loading (13) /Users/aayush/Desktop/canny_edge/uart/uart_tx.sv ...
+Done /Users/aayush/Desktop/canny_edge/uart/uart_tx.sv [7 ms, 109 lines, SystemVerilog_2012] ...
+Loading (14) /Users/aayush/Desktop/canny_edge/uart/uart_top.sv ...
+Done /Users/aayush/Desktop/canny_edge/uart/uart_top.sv [7 ms, 87 lines, SystemVerilog_2012] ...
+Loading (15) /Users/aayush/Desktop/canny_edge/uart/uart_rx.sv ...
+Done /Users/aayush/Desktop/canny_edge/uart/uart_rx.sv [8 ms, 98 lines, SystemVerilog_2012] ...
+Loading (16) /Users/aayush/Desktop/canny_edge/uart/fifo/fifo_data.sv ...
+Done /Users/aayush/Desktop/canny_edge/uart/fifo/fifo_data.sv [2 ms, 29 lines, SystemVerilog_2012] ...
+Loading (17) /Users/aayush/Desktop/canny_edge/uart/fifo/fifo_control.sv ...
+Done /Users/aayush/Desktop/canny_edge/uart/fifo/fifo_control.sv [3 ms, 79 lines, SystemVerilog_2012] ...
+Loading (18) /Users/aayush/Desktop/canny_edge/uart/fifo/fifo.sv ...
+Done /Users/aayush/Desktop/canny_edge/uart/fifo/fifo.sv [3 ms, 39 lines, SystemVerilog_2012] ...
+Loading (19) /Users/aayush/Desktop/canny_edge/uart/baud_gen.sv ...
+Done /Users/aayush/Desktop/canny_edge/uart/baud_gen.sv [2 ms, 25 lines, SystemVerilog_2012] ...
+Loading (20) /Users/aayush/Desktop/canny_edge/testBench/uart_tx_tb.sv ...
+Done /Users/aayush/Desktop/canny_edge/testBench/uart_tx_tb.sv [2 ms, 60 lines, SystemVerilog_2012] ...
+Loading (21) /Users/aayush/Desktop/canny_edge/testBench/uart_top_tb.sv ...
+Done /Users/aayush/Desktop/canny_edge/testBench/uart_top_tb.sv [3 ms, 65 lines, SystemVerilog_2012] ...
+Loading (22) /Users/aayush/Desktop/canny_edge/testBench/uart_rx_tb.sv ...
+Done /Users/aayush/Desktop/canny_edge/testBench/uart_rx_tb.sv [8 ms, 79 lines, SystemVerilog_2012] ...
+Loading (23) /Users/aayush/Desktop/canny_edge/testBench/line_buffer_tb.sv ...
+Done /Users/aayush/Desktop/canny_edge/testBench/line_buffer_tb.sv [2 ms, 52 lines, SystemVerilog_2012] ...
+Loading (24) /Users/aayush/Desktop/canny_edge/testBench/fifo_tb.sv ...
+Done /Users/aayush/Desktop/canny_edge/testBench/fifo_tb.sv [6 ms, 146 lines, SystemVerilog_2012] ...
+Loading (25) /Users/aayush/Desktop/canny_edge/testBench/chip_top_tb.sv ...
+Done /Users/aayush/Desktop/canny_edge/testBench/chip_top_tb.sv [7 ms, 181 lines, SystemVerilog_2012] ...
+Loading (26) /Users/aayush/Desktop/canny_edge/pixel_loader.sv ...
+Done /Users/aayush/Desktop/canny_edge/pixel_loader.sv [6 ms, 184 lines, SystemVerilog_2012] ...
+Loading (27) /Users/aayush/Desktop/canny_edge/non_max_suppression.sv ...
+Done /Users/aayush/Desktop/canny_edge/non_max_suppression.sv [2 ms, 46 lines, SystemVerilog_2012] ...
+Loading (28) /Users/aayush/Desktop/canny_edge/line_buffer.sv ...
+Done /Users/aayush/Desktop/canny_edge/line_buffer.sv [6 ms, 46 lines, SystemVerilog_2012] ...
+Loading (29) /Users/aayush/Desktop/canny_edge/hysteresis.sv ...
+Done /Users/aayush/Desktop/canny_edge/hysteresis.sv [1 ms, 27 lines, SystemVerilog_2012] ...
+Loading (30) /Users/aayush/Desktop/canny_edge/gradient_calculation.sv ...
+Done /Users/aayush/Desktop/canny_edge/gradient_calculation.sv [5 ms, 152 lines, SystemVerilog_2012] ...
+Loading (31) /Users/aayush/Desktop/canny_edge/gaussian_filter.sv ...
+Done /Users/aayush/Desktop/canny_edge/gaussian_filter.sv [3 ms, 55 lines, SystemVerilog_2012] ...
+Loading (32) /Users/aayush/Desktop/canny_edge/double_thresholding.sv ...
+Done /Users/aayush/Desktop/canny_edge/double_thresholding.sv [1 ms, 22 lines, SystemVerilog_2012] ...
+Loading (33) /Users/aayush/Desktop/canny_edge/chip_top.sv ...
+Done /Users/aayush/Desktop/canny_edge/chip_top.sv [1 ms, 37 lines, SystemVerilog_2012] ...
+Loading (34) /Users/aayush/Desktop/canny_edge/canny_edge_top.sv ...
+Done /Users/aayush/Desktop/canny_edge/canny_edge_top.sv [3 ms, 125 lines, SystemVerilog_2012] ...
+*** Done invocation #1 [241 ms] ***
+*** Done parsing [LT 113 ms, PT 241 ms] ***
+*** Total number of lines [2 946] ***
+Performing post full build actions ...
+Performing post full build step 1 (SRI) [1 ms] ...
+Performing post full build step 2 (RI) [0 ms] ...
+Performing post full build step 3 (RCP) [1 ms] ...
+*** Files summary [34 total, 34 unique, 0 optimized] ***
+*** Done SystemVerilog build [334 ms] ***
+
+*** Start mixed mode extension build ***
+Performing mixed post full build step (VLOG - RI) [1 ms] ...
+*** Warning: UNSPECIFIED_TOP: Please specify a -top module/entity/configuration in the project build file
+*** Top design candidates: work.arc_tan_tb, work.canny_edge_tb, work.gradient_calculation_tb, work.hysteresis_tb, work.nms_tb, work.pixel_loader_tb, work.sqrt_22b_tb, work.uart_tx_tb, work.uart_top_tb, work.uart_rx_tb, work.line_buffer_tb, ...
+Performing mixed post full build step (MIXED - ELAB) [314 ms] ...
+Performing mixed post full build step (MIXED - UNEL) [56 ms] ...
+*** Error: NON_EXISTING_PORT: Non existing port 'clk' of module 'non_max_suppression'
+    at line 90 in /Users/aayush/Desktop/canny_edge/testBench/hysteresis_tb.sv:90 [compile index 6]
+*** Error: NON_EXISTING_PORT: Non existing port 'rstN' of module 'non_max_suppression'
+    at line 91 in /Users/aayush/Desktop/canny_edge/testBench/hysteresis_tb.sv:91 [compile index 6]
+*** Error: NON_EXISTING_PORT: Non existing port 'gradient_data_valid' of module 'non_max_suppression'
+    at line 94 in /Users/aayush/Desktop/canny_edge/testBench/hysteresis_tb.sv:94 [compile index 6]
+*** Error: NON_EXISTING_PORT: Non existing port 'clk' of module 'double_threshold'
+    at line 101 in /Users/aayush/Desktop/canny_edge/testBench/hysteresis_tb.sv:101 [compile index 6]
+*** Error: NON_EXISTING_PORT: Non existing port 'rstN' of module 'double_threshold'
+    at line 102 in /Users/aayush/Desktop/canny_edge/testBench/hysteresis_tb.sv:102 [compile index 6]
+*** Error: NON_EXISTING_PORT: Non existing port 'clk' of module 'hysteresis'
+    at line 119 in /Users/aayush/Desktop/canny_edge/testBench/hysteresis_tb.sv:119 [compile index 6]
+*** Error: NON_EXISTING_PORT: Non existing port 'rstN' of module 'hysteresis'
+    at line 120 in /Users/aayush/Desktop/canny_edge/testBench/hysteresis_tb.sv:120 [compile index 6]
+*** Warning: MISSING_PORT_CONNECTION: Instance 'nms' of module 'non_max_suppression' is missing port connection to input 'gradient_mag_valid, gradient_dir_valid'
+    at line 89 in /Users/aayush/Desktop/canny_edge/testBench/hysteresis_tb.sv:89 [compile index 6]
+*** Warning: WIDTH_MISMATCH_TRUNCATION: Assignment to 'pixel_value' of '8-bit' type from 'gradient_magnitude' of '11-bit' type
+    at line 246 in /Users/aayush/Desktop/canny_edge/testBench/hysteresis_tb.sv:246 [compile index 6]
+*** Warning: WIDTH_MISMATCH_PADDING: Assignment to 'pixel_value' of '8-bit' type from 'gradient_direction' of '2-bit' type
+    at line 247 in /Users/aayush/Desktop/canny_edge/testBench/hysteresis_tb.sv:247 [compile index 6]
+*** Warning: CASE_ITEM_WIDTH_MISMATCH: Comparison between case expression 'gradient_direction' of '2-bit' type and item expression '0' of '32-bit' type
+    at line 249 in /Users/aayush/Desktop/canny_edge/testBench/hysteresis_tb.sv:249 [compile index 6]
+*** Warning: CASE_ITEM_WIDTH_MISMATCH: Comparison between case expression 'gradient_direction' of '2-bit' type and item expression '1' of '32-bit' type
+    at line 250 in /Users/aayush/Desktop/canny_edge/testBench/hysteresis_tb.sv:250 [compile index 6]
+*** Warning: CASE_ITEM_WIDTH_MISMATCH: Comparison between case expression 'gradient_direction' of '2-bit' type and item expression '2' of '32-bit' type
+    at line 251 in /Users/aayush/Desktop/canny_edge/testBench/hysteresis_tb.sv:251 [compile index 6]
+*** Warning: CASE_ITEM_WIDTH_MISMATCH: Comparison between case expression 'gradient_direction' of '2-bit' type and item expression '3' of '32-bit' type
+    at line 252 in /Users/aayush/Desktop/canny_edge/testBench/hysteresis_tb.sv:252 [compile index 6]
+*** Warning: WIDTH_MISMATCH_TRUNCATION: Assignment to 'pixel_value' of '8-bit' type from 'nms_magnitude' of '11-bit' type
+    at line 261 in /Users/aayush/Desktop/canny_edge/testBench/hysteresis_tb.sv:261 [compile index 6]
+*** Warning: WIDTH_MISMATCH_PADDING: Assignment to 'pixel_value' of '8-bit' type from 'nms_direction' of '2-bit' type
+    at line 262 in /Users/aayush/Desktop/canny_edge/testBench/hysteresis_tb.sv:262 [compile index 6]
+*** Error: NON_EXISTING_PORT: Non existing port 'clk' of module 'non_max_suppression'
+    at line 86 in /Users/aayush/Desktop/canny_edge/testBench/non_max_suppression_tb.sv:86 [compile index 7]
+*** Error: NON_EXISTING_PORT: Non existing port 'rstN' of module 'non_max_suppression'
+    at line 87 in /Users/aayush/Desktop/canny_edge/testBench/non_max_suppression_tb.sv:87 [compile index 7]
+*** Error: NON_EXISTING_PORT: Non existing port 'gradient_data_valid' of module 'non_max_suppression'
+    at line 90 in /Users/aayush/Desktop/canny_edge/testBench/non_max_suppression_tb.sv:90 [compile index 7]
+*** Warning: MISSING_PORT_CONNECTION: Instance 'nms' of module 'non_max_suppression' is missing port connection to input 'gradient_mag_valid, gradient_dir_valid'
+    at line 85 in /Users/aayush/Desktop/canny_edge/testBench/non_max_suppression_tb.sv:85 [compile index 7]
+*** Warning: WIDTH_MISMATCH_TRUNCATION: Assignment to 'pixel_value' of '8-bit' type from 'gradient_magnitude' of '11-bit' type
+    at line 214 in /Users/aayush/Desktop/canny_edge/testBench/non_max_suppression_tb.sv:214 [compile index 7]
+*** Warning: WIDTH_MISMATCH_PADDING: Assignment to 'pixel_value' of '8-bit' type from 'gradient_direction' of '2-bit' type
+    at line 215 in /Users/aayush/Desktop/canny_edge/testBench/non_max_suppression_tb.sv:215 [compile index 7]
+*** Warning: CASE_ITEM_WIDTH_MISMATCH: Comparison between case expression 'gradient_direction' of '2-bit' type and item expression '0' of '32-bit' type
+    at line 217 in /Users/aayush/Desktop/canny_edge/testBench/non_max_suppression_tb.sv:217 [compile index 7]
+*** Warning: CASE_ITEM_WIDTH_MISMATCH: Comparison between case expression 'gradient_direction' of '2-bit' type and item expression '1' of '32-bit' type
+    at line 218 in /Users/aayush/Desktop/canny_edge/testBench/non_max_suppression_tb.sv:218 [compile index 7]
+*** Warning: CASE_ITEM_WIDTH_MISMATCH: Comparison between case expression 'gradient_direction' of '2-bit' type and item expression '2' of '32-bit' type
+    at line 219 in /Users/aayush/Desktop/canny_edge/testBench/non_max_suppression_tb.sv:219 [compile index 7]
+*** Warning: CASE_ITEM_WIDTH_MISMATCH: Comparison between case expression 'gradient_direction' of '2-bit' type and item expression '3' of '32-bit' type
+    at line 220 in /Users/aayush/Desktop/canny_edge/testBench/non_max_suppression_tb.sv:220 [compile index 7]
+*** Warning: WIDTH_MISMATCH_TRUNCATION: Assignment to 'pixel_value' of '8-bit' type from 'nms_magnitude' of '11-bit' type
+    at line 229 in /Users/aayush/Desktop/canny_edge/testBench/non_max_suppression_tb.sv:229 [compile index 7]
+*** Warning: WIDTH_MISMATCH_PADDING: Assignment to 'pixel_value' of '8-bit' type from 'nms_direction' of '2-bit' type
+    at line 230 in /Users/aayush/Desktop/canny_edge/testBench/non_max_suppression_tb.sv:230 [compile index 7]
+*** Warning: WIDTH_MISMATCH_TRUNCATION: Assignment to 'Gx' of '11-bit' type from '- 52' of '32-bit' type
+    at line 28 in /Users/aayush/Desktop/canny_edge/testBench/arc_tan_tb.sv:28 [compile index 3]
+*** Warning: WIDTH_MISMATCH_TRUNCATION: Assignment to 'Gy' of '11-bit' type from '- 64' of '32-bit' type
+    at line 29 in /Users/aayush/Desktop/canny_edge/testBench/arc_tan_tb.sv:29 [compile index 3]
+*** Warning: WIDTH_MISMATCH_TRUNCATION: Assignment to 'Gx' of '11-bit' type from '- 736' of '32-bit' type
+    at line 31 in /Users/aayush/Desktop/canny_edge/testBench/arc_tan_tb.sv:31 [compile index 3]
+*** Warning: WIDTH_MISMATCH_TRUNCATION: Assignment to 'Gy' of '11-bit' type from '- 123' of '32-bit' type
+    at line 32 in /Users/aayush/Desktop/canny_edge/testBench/arc_tan_tb.sv:32 [compile index 3]
+*** Warning: WIDTH_MISMATCH_TRUNCATION: Assignment to 'Gy' of '11-bit' type from '- 64' of '32-bit' type
+    at line 35 in /Users/aayush/Desktop/canny_edge/testBench/arc_tan_tb.sv:35 [compile index 3]
+*** Warning: WIDTH_MISMATCH_TRUNCATION: Assignment to 'Gy' of '11-bit' type from '- 123' of '32-bit' type
+    at line 38 in /Users/aayush/Desktop/canny_edge/testBench/arc_tan_tb.sv:38 [compile index 3]
+*** Warning: WIDTH_MISMATCH_TRUNCATION: Assignment to 'Gx' of '11-bit' type from '- 52' of '32-bit' type
+    at line 40 in /Users/aayush/Desktop/canny_edge/testBench/arc_tan_tb.sv:40 [compile index 3]
+*** Warning: WIDTH_MISMATCH_TRUNCATION: Assignment to 'Gx' of '11-bit' type from '- 736' of '32-bit' type
+    at line 43 in /Users/aayush/Desktop/canny_edge/testBench/arc_tan_tb.sv:43 [compile index 3]
+*** Warning: WIDTH_MISMATCH_TRUNCATION: Assignment to 'tx_wr_data' of '8-bit' type from 'i' of '32-bit' type
+    at line 45 in /Users/aayush/Desktop/canny_edge/testBench/uart_top_tb.sv:45 [compile index 21]
+*** Warning: WIDTH_MISMATCH_TRUNCATION: Assignment to 'i_data' of '8-bit' type from 'i' of '32-bit' type
+    at line 34 in /Users/aayush/Desktop/canny_edge/testBench/line_buffer_tb.sv:34 [compile index 23]
+*** Warning: WIDTH_MISMATCH_TRUNCATION: Assignment to 'pixel_value' of '8-bit' type from 'gradient_magnitude' of '11-bit' type
+    at line 178 in /Users/aayush/Desktop/canny_edge/testBench/gradient_calculation_tb.sv:178 [compile index 5]
+*** Warning: WIDTH_MISMATCH_PADDING: Assignment to 'pixel_value' of '8-bit' type from 'gradient_direction' of '2-bit' type
+    at line 179 in /Users/aayush/Desktop/canny_edge/testBench/gradient_calculation_tb.sv:179 [compile index 5]
+*** Warning: CASE_ITEM_WIDTH_MISMATCH: Comparison between case expression 'gradient_direction' of '2-bit' type and item expression '0' of '32-bit' type
+    at line 181 in /Users/aayush/Desktop/canny_edge/testBench/gradient_calculation_tb.sv:181 [compile index 5]
+*** Warning: CASE_ITEM_WIDTH_MISMATCH: Comparison between case expression 'gradient_direction' of '2-bit' type and item expression '1' of '32-bit' type
+    at line 182 in /Users/aayush/Desktop/canny_edge/testBench/gradient_calculation_tb.sv:182 [compile index 5]
+*** Warning: CASE_ITEM_WIDTH_MISMATCH: Comparison between case expression 'gradient_direction' of '2-bit' type and item expression '2' of '32-bit' type
+    at line 183 in /Users/aayush/Desktop/canny_edge/testBench/gradient_calculation_tb.sv:183 [compile index 5]
+*** Warning: CASE_ITEM_WIDTH_MISMATCH: Comparison between case expression 'gradient_direction' of '2-bit' type and item expression '3' of '32-bit' type
+    at line 184 in /Users/aayush/Desktop/canny_edge/testBench/gradient_calculation_tb.sv:184 [compile index 5]
+*** Warning: WIDTH_MISMATCH_PADDING: Assignment to 'tx_reg' of '8-bit' type from '1'b1' of '1-bit' type
+    at line 32 in /Users/aayush/Desktop/canny_edge/uart/uart_tx.sv:32 [compile index 13]
+*** Warning: WIDTH_MISMATCH_PADDING: Assignment to 'tx_next' of '8-bit' type from '1'b1' of '1-bit' type
+    at line 53 in /Users/aayush/Desktop/canny_edge/uart/uart_tx.sv:53 [compile index 13]
+*** Warning: WIDTH_MISMATCH_PADDING: Assignment to 'tx_next' of '8-bit' type from '1'b0' of '1-bit' type
+    at line 61 in /Users/aayush/Desktop/canny_edge/uart/uart_tx.sv:61 [compile index 13]
+*** Warning: WIDTH_MISMATCH_PADDING: Assignment to 'tx_next' of '8-bit' type from 'data_reg[0]' of '1-bit' type
+    at line 74 in /Users/aayush/Desktop/canny_edge/uart/uart_tx.sv:74 [compile index 13]
+*** Warning: WIDTH_MISMATCH_PADDING: Assignment to 'tx_next' of '8-bit' type from '1'b1' of '1-bit' type
+    at line 92 in /Users/aayush/Desktop/canny_edge/uart/uart_tx.sv:92 [compile index 13]
+*** Warning: WIDTH_MISMATCH_TRUNCATION: Assignment to 'tx' of '1-bit' type from 'tx_reg' of '8-bit' type
+    at line 106 in /Users/aayush/Desktop/canny_edge/uart/uart_tx.sv:106 [compile index 13]
+*** Warning: CASE_ITEM_WIDTH_MISMATCH: Comparison between case expression 'curr_rd_buffer' of '2-bit' type and item expression '0' of '32-bit' type
+    at line 125 in /Users/aayush/Desktop/canny_edge/pixel_loader.sv:125 [compile index 26]
+*** Warning: CASE_ITEM_WIDTH_MISMATCH: Comparison between case expression 'curr_rd_buffer' of '2-bit' type and item expression '1' of '32-bit' type
+    at line 126 in /Users/aayush/Desktop/canny_edge/pixel_loader.sv:126 [compile index 26]
+*** Warning: CASE_ITEM_WIDTH_MISMATCH: Comparison between case expression 'curr_rd_buffer' of '2-bit' type and item expression '2' of '32-bit' type
+    at line 127 in /Users/aayush/Desktop/canny_edge/pixel_loader.sv:127 [compile index 26]
+*** Warning: CASE_ITEM_WIDTH_MISMATCH: Comparison between case expression 'curr_rd_buffer' of '2-bit' type and item expression '3' of '32-bit' type
+    at line 128 in /Users/aayush/Desktop/canny_edge/pixel_loader.sv:128 [compile index 26]
+*** Warning: CASE_ITEM_WIDTH_MISMATCH: Comparison between case expression 'curr_rd_buffer' of '2-bit' type and item expression '0' of '32-bit' type
+    at line 139 in /Users/aayush/Desktop/canny_edge/pixel_loader.sv:139 [compile index 26]
+*** Warning: CASE_ITEM_WIDTH_MISMATCH: Comparison between case expression 'curr_rd_buffer' of '2-bit' type and item expression '1' of '32-bit' type
+    at line 140 in /Users/aayush/Desktop/canny_edge/pixel_loader.sv:140 [compile index 26]
+*** Warning: CASE_ITEM_WIDTH_MISMATCH: Comparison between case expression 'curr_rd_buffer' of '2-bit' type and item expression '2' of '32-bit' type
+    at line 141 in /Users/aayush/Desktop/canny_edge/pixel_loader.sv:141 [compile index 26]
+*** Warning: CASE_ITEM_WIDTH_MISMATCH: Comparison between case expression 'curr_rd_buffer' of '2-bit' type and item expression '3' of '32-bit' type
+    at line 142 in /Users/aayush/Desktop/canny_edge/pixel_loader.sv:142 [compile index 26]
+Performing mixed post full build step (VLOG - RD) [2 ms] ...
+Performing mixed post full build step (VLOG - US) [102 ms] ...
+*** Warning: SIGNAL_RESET_BUT_NOT_DRIVEN: Signal 'file2' is reset but not driven
+    at line 95 in /Users/aayush/Desktop/canny_edge/testBench/canny_edge_tb.sv:95 [compile index 4]
+*** Warning: INTERNAL_GENERATED_CLOCK: Clock signal 'clk' is not an input port
+    at line 126 in /Users/aayush/Desktop/canny_edge/testBench/canny_edge_tb.sv:126 [compile index 4]
+*** Warning: INTERNAL_GENERATED_RESET: Reset signal 'pixel_out_valid' is not an input port
+    at line 127 in /Users/aayush/Desktop/canny_edge/testBench/canny_edge_tb.sv:127 [compile index 4]
+*** Warning: INTERNAL_GENERATED_CLOCK: Clock signal 'clk' is not an input port
+    at line 173 in /Users/aayush/Desktop/canny_edge/testBench/gradient_calculation_tb.sv:173 [compile index 5]
+*** Warning: INTERNAL_GENERATED_RESET: Reset signal 'gaussian_pixel_out_valid' is not an input port
+    at line 174 in /Users/aayush/Desktop/canny_edge/testBench/gradient_calculation_tb.sv:174 [compile index 5]
+*** Warning: SIGNAL_NEVER_READ: Signal 'pl3_data_out_valid' is never read (connected to sub-instance output port)
+    at line 13 in /Users/aayush/Desktop/canny_edge/testBench/hysteresis_tb.sv:13 [compile index 6]
+*** Warning: SIGNAL_NEVER_READ: Signal 'pl4_data_out_valid' is never read (connected to sub-instance output port)
+    at line 13 in /Users/aayush/Desktop/canny_edge/testBench/hysteresis_tb.sv:13 [compile index 6]
+*** Warning: INTERNAL_GENERATED_CLOCK: Clock signal 'clk' is not an input port
+    at line 241 in /Users/aayush/Desktop/canny_edge/testBench/hysteresis_tb.sv:241 [compile index 6]
+*** Warning: INTERNAL_GENERATED_RESET: Reset signal 'gaussian_pixel_out_valid' is not an input port
+    at line 242 in /Users/aayush/Desktop/canny_edge/testBench/hysteresis_tb.sv:242 [compile index 6]
+*** Warning: SIGNAL_NEVER_READ: Signal 'pl3_data_out_valid' is never read (connected to sub-instance output port)
+    at line 12 in /Users/aayush/Desktop/canny_edge/testBench/non_max_suppression_tb.sv:12 [compile index 7]
+*** Warning: SIGNAL_NEVER_READ: Signal 'pl4_data_out_valid' is never read (connected to sub-instance output port)
+    at line 12 in /Users/aayush/Desktop/canny_edge/testBench/non_max_suppression_tb.sv:12 [compile index 7]
+*** Warning: INTERNAL_GENERATED_CLOCK: Clock signal 'clk' is not an input port
+    at line 209 in /Users/aayush/Desktop/canny_edge/testBench/non_max_suppression_tb.sv:209 [compile index 7]
+*** Warning: INTERNAL_GENERATED_RESET: Reset signal 'gaussian_pixel_out_valid' is not an input port
+    at line 210 in /Users/aayush/Desktop/canny_edge/testBench/non_max_suppression_tb.sv:210 [compile index 7]
+*** Warning: SIGNAL_RESET_BUT_NOT_DRIVEN: Signal 'file2' is reset but not driven
+    at line 96 in /Users/aayush/Desktop/canny_edge/testBench/pixel_loader_tb.sv:96 [compile index 8]
+*** Warning: INTERNAL_GENERATED_CLOCK: Clock signal 'clk' is not an input port
+    at line 107 in /Users/aayush/Desktop/canny_edge/testBench/pixel_loader_tb.sv:107 [compile index 8]
+*** Warning: INTERNAL_GENERATED_RESET: Reset signal 'gaussian_pixel_out_valid' is not an input port
+    at line 108 in /Users/aayush/Desktop/canny_edge/testBench/pixel_loader_tb.sv:108 [compile index 8]
+*** Warning: SIGNAL_NEVER_READ: Signal 'sqrt' is never read (connected to sub-instance output port)
+    at line 5 in /Users/aayush/Desktop/canny_edge/testBench/sqrt_22b_tb.sv:5 [compile index 10]
+*** Warning: SIGNAL_NEVER_READ: Signal 'tx_empty' is never read (connected to sub-instance output port)
+    at line 33 in /Users/aayush/Desktop/canny_edge/uart/uart_top.sv:33 [compile index 14]
+*** Warning: SIGNAL_NEVER_READ: Signal 'rx_empty' is never read (connected to sub-instance output port)
+    at line 34 in /Users/aayush/Desktop/canny_edge/uart/uart_top.sv:34 [compile index 14]
+*** Warning: SIGNAL_NEVER_READ: Signal 'tx' is never read (connected to sub-instance output port)
+    at line 10 in /Users/aayush/Desktop/canny_edge/testBench/uart_tx_tb.sv:10 [compile index 20]
+*** Warning: SIGNAL_NEVER_READ: Signal 'rd_data' is never read (connected to sub-instance output port)
+    at line 10 in /Users/aayush/Desktop/canny_edge/testBench/fifo_tb.sv:10 [compile index 24]
+*** Warning: SIGNAL_NEVER_READ: Signal 'full' is never read (connected to sub-instance output port)
+    at line 11 in /Users/aayush/Desktop/canny_edge/testBench/fifo_tb.sv:11 [compile index 24]
+*** Warning: SIGNAL_NEVER_READ: Signal 'empty' is never read (connected to sub-instance output port)
+    at line 11 in /Users/aayush/Desktop/canny_edge/testBench/fifo_tb.sv:11 [compile index 24]
+*** Warning: SIGNAL_NEVER_READ: Signal 'valid' is never read (connected to sub-instance output port)
+    at line 11 in /Users/aayush/Desktop/canny_edge/testBench/fifo_tb.sv:11 [compile index 24]
+*** Warning: SIGNAL_NEVER_USED: Signal 'file_out' is never used
+    at line 29 in /Users/aayush/Desktop/canny_edge/testBench/chip_top_tb.sv:29 [compile index 25]
+*** Warning: INTERNAL_GENERATED_CLOCK: Clock signal 'clk' is not an input port
+    at line 170 in /Users/aayush/Desktop/canny_edge/testBench/chip_top_tb.sv:170 [compile index 25]
+*** Warning: INTERNAL_GENERATED_RESET: Reset signal 'tx' is not an input port
+    at line 171 in /Users/aayush/Desktop/canny_edge/testBench/chip_top_tb.sv:171 [compile index 25]
+*** Warning: SIGNAL_NOT_RESET: Signal 'line' is not reset
+    at line 22 in /Users/aayush/Desktop/canny_edge/line_buffer.sv:22 [compile index 28]
+*** Warning: FEEDTHROUGH_DETECTED: Feedthrough from 'str_valid' to 'edge_out_valid'
+    at line 24 in /Users/aayush/Desktop/canny_edge/hysteresis.sv:24 [compile index 29]
+*** Warning: FEEDTHROUGH_DETECTED: Feedthrough from 'mag_valid' to 'str_valid'
+    at line 19 in /Users/aayush/Desktop/canny_edge/double_thresholding.sv:19 [compile index 32]
+*** Warning: SIGNAL_NEVER_READ: Signal 'sobel_out' is never read (connected to sub-instance output port)
+    at line 22 in /Users/aayush/Desktop/canny_edge/canny_edge_top.sv:22 [compile index 34]
+*** Warning: SIGNAL_NEVER_READ: Signal 'sobel_out_x' is never read (connected to sub-instance output port)
+    at line 23 in /Users/aayush/Desktop/canny_edge/canny_edge_top.sv:23 [compile index 34]
+*** Warning: SIGNAL_NEVER_READ: Signal 'sobel_out_y' is never read (connected to sub-instance output port)
+    at line 23 in /Users/aayush/Desktop/canny_edge/canny_edge_top.sv:23 [compile index 34]
+*** Warning: SIGNAL_NEVER_READ: Signal 'sobel_xy_valid' is never read (connected to sub-instance output port)
+    at line 24 in /Users/aayush/Desktop/canny_edge/canny_edge_top.sv:24 [compile index 34]
+*** Warning: SIGNAL_NEVER_READ: Signal 'nms_direction' is never read (connected to sub-instance output port)
+    at line 26 in /Users/aayush/Desktop/canny_edge/canny_edge_top.sv:26 [compile index 34]
+*** Done mixed mode extension build [484 ms] ***
+*** Total build time [1s.010ms] ***
