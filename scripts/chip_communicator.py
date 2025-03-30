@@ -16,6 +16,5 @@ def send_pixels(serial_port, input_file, output_file, baudrate=625000):
 
             print(f"Transmission complete. Received {len(received)} bytes")
 
-if __name__ == "__main__":
-    send_pixels("COM6", r"C:\Users\ROG\Desktop\canny_edge\testImages\images_binary\lena_gray.txt", 
-                r"C:\Users\ROG\Desktop\canny_edge\testImages\output.txt")  # Change port as needed
+send_pixels("COM6", r"C:\Users\ROG\Desktop\canny_edge\testImages\images_binary\lena_gray.txt", 
+            r"C:\Users\ROG\Desktop\canny_edge\testImages\output.txt")  # Change port as needed
