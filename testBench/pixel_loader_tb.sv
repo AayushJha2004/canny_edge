@@ -39,7 +39,7 @@ module pixel_loader_tb;
     int i;                  // Loop index
     
     // Open the file for reading
-    file = $fopen("C:\\Users\\ROG\\Desktop\\canny_edge\\testImages\\images_binary\\t029.txt", "rb");
+    file = $fopen("../testImages/images_binary/t029.txt", "rb");
     if (file == 0) begin
       $error("ERROR: Could not open the text file.");
       $finish;
@@ -106,7 +106,7 @@ module pixel_loader_tb;
 
   always @ (posedge clk) begin
     if (gaussian_pixel_out_valid) begin
-      write_pixel_to_file(gaussian_pixel_out, "C:\\Users\\ROG\\Desktop\\canny_edge\\testImages\\output_binary\\gaussian_output.txt");
+      write_pixel_to_file(gaussian_pixel_out, "../testImages/output_binary/gaussian_output.txt");
     end
   end
 

@@ -26,7 +26,7 @@ module canny_edge_tb;
     int i;                  // Loop index
     
     // Open the file for reading
-    file = $fopen("C:\\Users\\ROG\\Desktop\\canny_edge\\testImages\\images_binary\\t111.txt", "rb");
+    file = $fopen("../testImages/images_binary/t111.txt", "rb");
     if (file == 0) begin
       $error("ERROR: Could not open the text file.");
       $finish;
@@ -120,13 +120,13 @@ module canny_edge_tb;
   endtask
 
   initial begin
-    clear_file("C:\\Users\\ROG\\Desktop\\canny_edge\\testImages\\output_binary\\edge.txt");
+    clear_file("../testImages/output_binary/edge.txt");
   end
 
   always @ (posedge clk) begin
     if (pixel_out_valid) begin
       write_pixel_to_file(pixel_out,
-      "C:\\Users\\ROG\\Desktop\\canny_edge\\testImages\\output_binary\\edge.txt");
+      "../testImages/output_binary/edge.txt");
     end
   end
 
